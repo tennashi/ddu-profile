@@ -39,7 +39,7 @@ endfunction
 
 augroup DDUProfile
   autocmd!
-  autocmd User DDUReady call s:install_profile()
+  autocmd VimEnter * call s:install_profile()
 augroup END
 
 function! s:install_profile() abort
