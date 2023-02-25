@@ -1,23 +1,23 @@
 let s:profiles = {}
 
-function! ddu#profile#new(name) abort
+function! ddu#custom#profile#new(name) abort
   let s:profiles[a:name] = {}
 endfunction
 
-function! ddu#profile#ensure(name) abort
+function! ddu#custom#profile#ensure(name) abort
   if !has_key(s:profiles, a:name)
-    call ddu#profile#new(a:name)
+    call ddu#custom#profile#new(a:name)
   endif
 endfunction
 
-function! ddu#profile#insert_source(name, source, index) abort
+function! ddu#custom#profile#insert_source(name, source, index) abort
   let l:cur_sources = s:profiles[a:name]['sources']
   let l:sources = insert(l:cur_sources, source, index)
 
   let s:profiles[a:name]['sources'] = l:sources
 endfunction
 
-function! ddu#profile#load(name) abort
+function! ddu#custom#profile#load(name) abort
   let l:profile = s:profiles[a:name]
   call ddu#custom#patch_local(a:name, l:profile)
 endfunction
