@@ -11,8 +11,23 @@ function! ddu#custom#profile#ensure(name) abort
 endfunction
 
 function! ddu#custom#profile#insert_source(name, source, index) abort
+  if !has_key(s:profiles[a:name], 'sources')
+    let s:profiles[a:name]['sources'] = []
+  endif
+
   let l:cur_sources = s:profiles[a:name]['sources']
-  let l:sources = insert(l:cur_sources, source, index)
+  let l:sources = insert(l:cur_sources, a:source, a:index)
+
+  let s:profiles[a:name]['sources'] = l:sources
+endfunction
+
+function! ddu#custom#profile#add_source(name, source) abort
+  if !has_key(s:profiles[a:name], 'sources')
+    let s:profiles[a:name]['sources'] = []
+  endif
+
+  let l:cur_sources = s:profiles[a:name]['sources']
+  let l:sources = add(l:cur_sources, a:source)
 
   let s:profiles[a:name]['sources'] = l:sources
 endfunction
