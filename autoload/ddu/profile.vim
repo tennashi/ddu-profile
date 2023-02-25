@@ -4,6 +4,12 @@ function! ddu#profile#new(name) abort
   let s:profiles[a:name] = {}
 endfunction
 
+function! ddu#profile#ensure(name) abort
+  if !has_key(s:profiles, a:name)
+    call ddu#profile#new(a:name)
+  endif
+endfunction
+
 function! ddu#profile#insert_source(name, source, index) abort
   let l:cur_sources = s:profiles[a:name]['sources']
   let l:sources = insert(l:cur_sources, source, index)
