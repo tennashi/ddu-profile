@@ -43,5 +43,5 @@ augroup DDUProfile
 augroup END
 
 function! s:install_profile() abort
-  map(s:profiles, { name, profile -> ddu#custom#patch_local(a:name, a:profile) })
+  call map(s:profiles, { name -> ddu#custom#profile#load(l:name) })
 endfunction
